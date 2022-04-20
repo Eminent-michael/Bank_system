@@ -6,7 +6,7 @@ from email.mime.text import MIMEText
 class Bank_email:
     def __init__(self):
         self.from_email = "michaelsmtp1@gmail.com"
-        self.from_password = "olanshile"
+        self.from_password = ""
 
     def create_account_email(self, name, email, account_no, pin):
         to_email = email
@@ -26,7 +26,7 @@ class Bank_email:
         msg["From"] = self.from_email
 
     def deposit_email(self):
-
+        pass
 
     def email_login(self):
         context = ssl.create_default_context()
