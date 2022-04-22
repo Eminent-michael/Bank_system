@@ -34,7 +34,7 @@ if int(customer_input) == 1:
 # Deposit to account line of code.....
 
 elif int(customer_input) == 2:
-    depositCash(data1, data)
+    depositCash(data1)
 
 # Money Withdrawal for customer....
 

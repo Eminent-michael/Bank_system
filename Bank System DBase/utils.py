@@ -57,18 +57,27 @@ def createAccount(data):
 # DepositCash to user account
 
 
-def depositCash(data1, data):
-    account_no, pin = data.user_validation()
+def depositCash(data1):
+    account_no, pin = data1.user_validation()
+    try:
+        checking = data1.check_account_name(account_no)
+        print(f"Welcome back '{checking}'.")
 
-    checking = data.check_account_name(account_no)
-    print(f"Welcome back '{checking}'.")
+        amount_input = int(input("How much do you want to Deposit: "))
+        pin = int(input("Enter you security pin: "))
+        data1.deposit(account_no, pin, amount_input)
+        data1.commit()
+        time.sleep(3)
+        print(f"Your have successfully Deposited '{amount_input}'")
 
-    amount_input = int(input("How much do you want to Deposit: "))
-    pin = int(input("Enter you security pin: "))
-    data1.deposit(account_no, pin, amount_input)
-    data1.commit()
-    time.sleep(3)
-    print(f"Your have successfully Deposited '{amount_input}'")
+    except TypeError:
+        print(
+            """
+Your transaction cannot be completed
+You've entered incorrect pin more than 3 times
+Try again in 10 minutes.
+Thank you..
+            """)
 
 
 def withdrawCash(data1, data):

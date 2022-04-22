@@ -29,21 +29,32 @@ class Account:
     def user_validation(self):
         account_no = int(input("Enter your account number to identify you: "))
         pin = int(input("Enter your security pin: "))
+        chances = 3
         i = 1
         x = 0
-        while i == 0 and x <= 3:
+        while i == 1 and x <= 4:
             valid_query = "SELECT name FROM account WHERE account_no = ? and pin = ?"
             self.cur.execute(valid_query, (account_no, pin))
             rows = self.cur.fetchone()
-            print(rows)
+            # print(rows)
             if rows is None:
                 print("Account number or pin is no correct")
                 print('Please try again\n')
                 account_no = int(input("Enter your account no: "))
                 pin = int(input("Enter your pin: "))
 
+                if x == 0:
+                    pass
+                elif x == 1:
+                    print(f'You have {chances} chances left')
+                else:
+                    while i == 1:
+                        chances -= 1
+                        print(f'You have {chances} chances left')
+                        break
+
                 x += 1
-                i = 0
+                i = 1
             else:
                 print("Transaction processing....")
                 break
